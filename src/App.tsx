@@ -21,7 +21,8 @@ const PAGES: any = {
 
 export default function App() {
   const [active, setActive] = useState("dashboard");
-  const [collapsed, setCollapsed] = useState(false);
+  // const [collapsed, setCollapsed] = useState(false);
+  const [collapsed] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const Page = PAGES[active];
