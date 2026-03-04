@@ -19,7 +19,7 @@ export default function Settings() {
         <p className="text-slate-400 text-sm mt-1">Configure platform preferences</p>
       </div>
 
-      <div className="grid grid-cols-2 gap-5">
+      <div className="grid md:grid-cols-2 gap-5">
         <Card className="p-6">
           <h3 className="font-display font-bold text-white mb-5">General Settings</h3>
           {[{ label: "Company Name", key: "companyName" as const }, { label: "Admin Email", key: "email" as const }, { label: "Currency", key: "currency" as const }, { label: "Timezone", key: "timezone" as const }].map((f) => (
