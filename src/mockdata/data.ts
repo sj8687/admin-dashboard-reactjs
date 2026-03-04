@@ -1,4 +1,4 @@
-import type { Order, RevenueChartItem, User } from "../constants/type";
+import type { Order, PieChartItem, RevenueChartItem, User } from "../constants/type";
 
 export const STATS = {
   totalRevenue: 1084320, totalOrders: 12483, activeDeliveries: 342,
@@ -52,7 +52,7 @@ export const ACTIVITY = [
   { id: 6, dot: "bg-emerald-400", msg: "Payment ₹780 received for ORD-10293", time: "2 hr ago" },
 ];
 
-export const PIE_DATA = [
+export const PIE_DATA: PieChartItem[] = [
   { name: "Delivered", value: 8420, color: "#34d399" },
   { name: "In Transit", value: 342, color: "#818cf8" },
   { name: "Pending", value: 87, color: "#fbbf24" },

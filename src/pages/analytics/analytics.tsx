@@ -1,17 +1,17 @@
 import { Bar, BarChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import { Card } from "../../components/ui/card";
-import { REVENUE_CHART } from "../../mockdata/data";
 import Avatar from "../../components/ui/Avatar";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import type { RootState } from "../../app/store";
 import { fetchDriversRequest, fetchRevenueRequest } from "../../features/post/postSlice";
+import RevenueChart from "../Dashboards/RevenueChart";
 
 export default function Analytics() {
 
   const dispatch = useDispatch();
 
-  const { drivers,revenueChart, driversLoading,revenueLoading } = useSelector((state: RootState) => state.posts);
+  const { drivers,revenueChart,  } = useSelector((state: RootState) => state.posts);
 
   useEffect(() => {
     dispatch(fetchDriversRequest());
@@ -26,8 +26,8 @@ useEffect(() => {
   
 }, [dispatch]);
 
-  if (driversLoading) return <p className="text-white">Loading</p>
-  if (revenueLoading) return <p className="text-amber-200">Loading</p>
+  // if (driversLoading) return <p className="text-white">Loading</p>
+  // if (revenueLoading) return <p className="text-amber-200">Loading</p>
   return (
     <div className="space-y-5">
       <div>
@@ -96,6 +96,9 @@ useEffect(() => {
           </tbody>
         </table>
       </Card>
+      <div>
+        <RevenueChart />
+      </div>
     </div>
   );
 }

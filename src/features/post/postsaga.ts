@@ -1,5 +1,5 @@
 import { call, put, takeLatest } from "redux-saga/effects";
-import { activityApi, driversApi, fetchPostsAPI, ordersApi, revenueApi, statsApi, usersApi } from "./api";
+import { activityApi, driversApi, ordersApi, pieApi, revenueApi, statsApi, usersApi } from "./api";
 import {
   fetchOrdersRequest,
   fetchOrdersSuccess,
@@ -19,9 +19,12 @@ import {
   fetchRevenueSuccess,
   fetchRevenueFailure,
   fetchRevenueRequest,
+  fetchPieSuccess,
+  fetchPieFailure,
+  fetchPieRequest,
 
 } from "./postSlice";
-import type { Driver, Post, RevenueChartItem, User } from "../../constants/type";
+import type { Driver, PieChartItem, RevenueChartItem, User } from "../../constants/type";
 import type { SagaIterator } from "redux-saga";
 
 // function* workerFetchPosts(): Generator<any, void, Post[]> {
@@ -97,6 +100,14 @@ function* handleFetchRevenue(): SagaIterator {
 
 
 
+function* handleFetchPie(): SagaIterator {
+  try {
+    const data: PieChartItem[] = yield call(pieApi.getPieData);
+    yield put(fetchPieSuccess(data));
+  } catch (error: any) {
+    yield put(fetchPieFailure(error.message));
+  }
+}
 
 
 
@@ -108,6 +119,7 @@ export default function* postSaga(): SagaIterator {
   yield takeLatest(fetchDriversRequest.type, handleFetchDrivers);
   yield takeLatest(fetchUsersRequest.type, handleFetchUsers);
   yield takeLatest(fetchRevenueRequest.type, handleFetchRevenue);
+  yield takeLatest(fetchPieRequest.type, handleFetchPie);
 
 }
 

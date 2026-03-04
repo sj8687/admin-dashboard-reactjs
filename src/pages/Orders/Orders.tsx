@@ -85,7 +85,7 @@ export default function Orders() {
                     <span className="bg-slate-700/60 text-slate-400 text-xs px-2.5 py-0.5 rounded-full font-medium">{o.type}</span>
                   </td>
                   <td className="py-3.5 px-3">
-                    {/* <Badge value={o.status} /> */} hiii
+                    <Badge value={o.status} /> 
                   </td>
                   <td className="py-3.5 px-3 font-bold text-white">₹{o.amount}</td>
                 </tr>

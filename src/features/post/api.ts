@@ -1,5 +1,5 @@
-import { STATS, type Activity, type Driver, type Order, type RevenueChartItem, type User } from "../../constants/type";
-import { ACTIVITY, DRIVERS, ORDERS, REVENUE_CHART, USERS } from "../../mockdata/data";
+import { STATS, type Activity, type Driver, type Order, type PieChartItem, type RevenueChartItem, type User } from "../../constants/type";
+import { ACTIVITY, DRIVERS, ORDERS, PIE_DATA, REVENUE_CHART, USERS } from "../../mockdata/data";
 
 
 
@@ -75,3 +75,12 @@ export const revenueApi = {
 
 
 
+export const pieApi = {
+  getPieData: async (): Promise<PieChartItem[]> => {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve(PIE_DATA);
+      }, 400);
+    });
+  },
+};

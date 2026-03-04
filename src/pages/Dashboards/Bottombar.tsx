@@ -1,7 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import Badge from "../../components/ui/Badge";
 import { Card } from "../../components/ui/card";
-import { ACTIVITY, ORDERS } from "../../mockdata/data";
 import type { RootState } from "../../app/store";
 import { useEffect } from "react";
 import { fetchActivityRequest, fetchOrdersRequest } from "../../features/post/postSlice";
@@ -32,7 +31,7 @@ export default function Bottombar() {
                 <p className="text-xs text-slate-500">{o.customer}</p>
               </div>
               <div className="text-right space-y-1">
-                {/* <Badge value={o.status} /> */} hii
+                <Badge value={o.status} /> 
                 <p className="text-xs font-bold text-white">₹{o.amount}</p>
               </div>
             </div>

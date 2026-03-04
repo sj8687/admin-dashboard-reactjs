@@ -105,3 +105,10 @@ export interface RevenueChartItem {
   revenue: number;
   orders: number;
 }
+
+
+export interface PieChartItem {
+  name: string;
+  value: number;
+  color: string;
+}

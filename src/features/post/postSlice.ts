@@ -1,5 +1,5 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
-import type { Activity, Driver, Order, Post, RevenueChartItem, Stats, User } from "../../constants/type";
+import type { Activity, Driver, Order, PieChartItem, RevenueChartItem, Stats, User } from "../../constants/type";
 
 // interface PostState {
 //   data: Post[];
@@ -21,8 +21,9 @@ interface OrdersState {
   drivers: Driver[],
   users: User[];
   revenueChart: RevenueChartItem[];
+  pieData: PieChartItem[];
 
-
+  pieLoading: boolean;
   ordersLoading: boolean;
   statsLoading: boolean;
   activityLoading: boolean,
@@ -30,6 +31,7 @@ interface OrdersState {
   usersLoading: boolean;
   revenueLoading: boolean;
 
+  pieError: string | null;
   revenueError: string | null
   usersError: string | null;
   driversError: string | null;
@@ -44,7 +46,10 @@ const initialState: OrdersState = {
   drivers: [],
   users: [],
   revenueChart: [],
+  pieData: [],
 
+
+  pieLoading: false,
   revenueLoading: false,
   driversLoading: false,
   ordersLoading: false,
@@ -52,6 +57,7 @@ const initialState: OrdersState = {
   activityLoading: false,
   usersLoading: false,
 
+  pieError: null,
 
   revenueError: null,
 
@@ -166,6 +172,20 @@ const postSlice = createSlice({
       state.revenueLoading = false;
       state.revenueError = action.payload;
     },
+
+
+    fetchPieRequest(state) {
+      state.pieLoading = true;
+      state.pieError = null;
+    },
+    fetchPieSuccess(state, action: PayloadAction<PieChartItem[]>) {
+      state.pieLoading = false;
+      state.pieData = action.payload;
+    },
+    fetchPieFailure(state, action: PayloadAction<string>) {
+      state.pieLoading = false;
+      state.pieError = action.payload;
+    },
   },
 });
 
@@ -191,6 +211,9 @@ export const {
   fetchRevenueRequest,
   fetchRevenueSuccess,
   fetchRevenueFailure,
+  fetchPieRequest,
+  fetchPieSuccess,
+  fetchPieFailure,
 } = postSlice.actions;
 
 export default postSlice.reducer;
