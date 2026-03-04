@@ -99,14 +99,14 @@ export default function App() {
         </nav>
 
         {/* Collapse (Desktop only) */}
-        <div className="p-2 border-t border-slate-800 hidden lg:block">
+        {/* <div className="p-2 border-t border-slate-800 hidden lg:block">
           <button
             onClick={() => setCollapsed(!collapsed)}
             className="w-full py-2 text-slate-500 hover:text-white text-sm"
           >
             {collapsed ? "→ Expand" : "← Collapse"}
           </button>
-        </div>
+        </div> */}
       </aside>
 
       {/* Main Content */}
