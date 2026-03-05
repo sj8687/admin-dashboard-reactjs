@@ -31,8 +31,8 @@ export default function Bottombar() {
         {/* Recent Orders */}
         <Card
           className={`p-4 sm:p-6 h-full ${theme === "dark"
-              ? "bg-slate-800 border border-slate-700"
-              : "bg-white border border-slate-200"
+            ? "bg-slate-800 border border-slate-700"
+            : "bg-white border border-slate-200"
             }`}
         >
           <h3
@@ -91,8 +91,8 @@ export default function Bottombar() {
         {/* Live Activity */}
         <Card
           className={`p-4 sm:p-6 h-full ${theme === "dark"
-              ? "bg-slate-800 border border-slate-700"
-              : "bg-white border border-slate-200"
+            ? "bg-slate-800 border border-slate-700"
+            : "bg-white border border-slate-200"
             }`}
         >
           <h3
