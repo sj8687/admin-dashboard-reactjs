@@ -1,5 +1,4 @@
 import { useState } from "react";
-import Avatar from "../components/ui/Avatar";
 import { NAV } from "../mockdata/data";
 import Dashboard from "../pages/Dashboards/Dashboard";
 import Orders from "../pages/Orders/Orders";
@@ -7,8 +6,8 @@ import Drivers from "../pages/Drivers/Driver";
 import Users from "../pages/Users/User";
 import Analytics from "../pages/analytics/analytics";
 import Settings from "../pages/settings/settings";
-import { Switch } from "../components/ui/switch";
 import { useTheme } from "../components/ui/DarkmodeToggle";
+import Header from "@/pages/Dashboards/Header";
 
 const PAGES: any = {
     dashboard: Dashboard,
@@ -25,7 +24,7 @@ export default function DashboardLayout() {
     const [collapsed, setCollapsed] = useState(false);
     const [mobileOpen, setMobileOpen] = useState(false);
 
-    const { theme, toggleTheme } = useTheme();
+    const { theme } = useTheme();
 
     const Page = PAGES[active];
 
@@ -70,6 +69,7 @@ export default function DashboardLayout() {
                         )}
 
                         {/* Collapse Toggle */}
+
                         <button
                             onClick={() => setCollapsed(!collapsed)}
                             className="hidden lg:block text-slate-400"
@@ -132,74 +132,16 @@ export default function DashboardLayout() {
                 <div className="flex-1 flex flex-col overflow-hidden">
 
                     {/* Header */}
-                    <header className="h-14 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between px-4 lg:px-6">
-
-                        <div className="flex items-center gap-3">
-
-                            <button
-                                onClick={() => setMobileOpen(true)}
-                                className="lg:hidden text-gray-400 dark:text-gray-300 text-2xl"
-                            >
-                                ☰
-                            </button>
-
-                            <div className="text-xs hidden sm:flex items-center gap-2">
-
-                                <span className="text-gray-500 dark:text-gray-400">
-                                    Super Admin
-                                </span>
-
-                                <span className="text-gray-700 dark:text-gray-300">
-                                    ›
-                                </span>
-
-                                <span className="text-gray-800 dark:text-gray-200 font-semibold capitalize">
-                                    {active}
-                                </span>
-
-                            </div>
-
-                        </div>
-
-                        <div className="flex items-center gap-3 lg:gap-4">
-
-                            {/* Theme Switch */}
-                            <div className="flex items-center gap-2 bo">
-
-                                {/* <span>☀️</span> */}
-
-                                <Switch
-                                    checked={theme === "dark"}
-                                    onCheckedChange={toggleTheme}
-                                />
-
-                                {/* <span>🌙</span> */}
-
-                            </div>
-
-                            {/* User */}
-                            <div className="flex items-center gap-2 lg:gap-3">
-
-                                <Avatar initials="SA" size="w-8 h-8" text="text-xs" />
-
-                                <div className="hidden sm:block">
-
-                                    <p className="text-xs font-bold text-gray-800 dark:text-white">
-                                        Super Admin
-                                    </p>
-
-                                    <p className="text-xs text-gray-500 dark:text-gray-400">
-                                        admin@logistics.com
-                                    </p>
-
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                    </header>
-
+                    <Header
+                        active={active}
+                        toggleSidebar={() => {
+                            if (window.innerWidth < 1024) {
+                                setMobileOpen(!mobileOpen);
+                            } else {
+                                setCollapsed(!collapsed);
+                            }
+                        }}
+                    />
                     {/* Page */}
                     <main className="flex-1 overflow-y-auto p-4 sm:p-6">
                         <Page />
