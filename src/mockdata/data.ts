@@ -1,4 +1,5 @@
-import type { Order, PieChartItem, RevenueChartItem, User } from "../constants/type";
+import type { Location, Order, PieChartItem, RevenueChartItem, User } from "../constants/type";
+
 
 export const STATS = {
   totalRevenue: 1084320, totalOrders: 12483, activeDeliveries: 342,
@@ -94,4 +95,19 @@ export const kpis = [
 ];
 
 
-  
+ 
+
+export const LOCATIONS = Array.from({ length: 100 }, (_, i) => {
+  const isWarehouse = Math.random() < 0.1; // ~10% warehouses
+  const latOffset = (Math.random() - 0.5) * 0.05; // ±0.025
+  const lngOffset = (Math.random() - 0.5) * 0.05; // ±0.025
+  return {
+    id: i + 1,
+    type: isWarehouse ? "warehouse" : "delivery",
+    name: isWarehouse
+      ? `Warehouse ${String.fromCharCode(65 + (i % 26))}`
+      : `Rider ${i + 1}`,
+    lat: 18.5204 + latOffset,
+    lng: 73.8567 + lngOffset,
+  };
+}) satisfies Location[];

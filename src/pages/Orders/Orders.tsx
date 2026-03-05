@@ -4,7 +4,7 @@ import Badge from "../../components/ui/Badge";
 import { useDispatch, useSelector } from "react-redux";
 import type { RootState } from "../../app/store";
 import { fetchOrdersRequest } from "../../features/post/postSlice";
-import { useTheme } from "../../components/ui/DarkmodeToggle";
+import { useTheme } from "@/components/ui/DarkmodeToggle";
 
 export default function Orders() {
   const [search, setSearch] = useState("");

@@ -4,6 +4,7 @@ import KpiCard from "./KpiCard";
 import type { RootState } from "../../app/store";
 import { useEffect } from "react";
 import { fetchStatsRequest } from "../../features/post/postSlice";
+import PuneMap from "@/Maps/Punemap";
 
 
 export default function Dashboard() {
@@ -39,6 +40,10 @@ export default function Dashboard() {
 
       <div className="mt-12">
         <Bottombar />
+      </div>
+
+      <div className="mt-7">
+        <PuneMap />
       </div>
     </>
   );

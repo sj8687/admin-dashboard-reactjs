@@ -112,3 +112,12 @@ export interface PieChartItem {
   value: number;
   color: string;
 }
+
+
+export type Location = {
+  id: number
+  type: "delivery" | "warehouse"
+  name: string
+  lat: number
+  lng: number
+}
