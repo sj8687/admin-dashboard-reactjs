@@ -7,10 +7,10 @@ export default function KpiCard() {
       
       {/* Header */}
       <div>
-        <h1 className="font-display text-xl sm:text-2xl lg:text-3xl font-bold text-white">
+        <h1 className="font-display text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white">
           Dashboard
         </h1>
-        <p className="text-slate-400 text-sm sm:text-base mt-1">
+        <p className="text-gray-500 dark:text-gray-400 text-sm sm:text-base mt-1">
           Welcome back! Here's today's snapshot.
         </p>
       </div>
@@ -20,21 +20,21 @@ export default function KpiCard() {
         {kpis.map((k) => (
           <Card
             key={k.label}
-            className="p-4 sm:p-5 hover:scale-[1.02] transition-transform duration-300"
+            className="p-4 sm:p-5 hover:scale-[1.02] transition-transform duration-300 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700"
           >
             <div className="flex items-start justify-between">
               
               {/* Left Content */}
               <div>
-                <p className="text-xs text-slate-500 uppercase tracking-wider font-semibold">
+                <p className="text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wider font-semibold">
                   {k.label}
                 </p>
 
-                <p className="text-2xl sm:text-3xl font-bold text-white mt-1 font-display">
+                <p className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mt-1 font-display">
                   {k.value}
                 </p>
 
-                <p className="text-xs text-slate-400 mt-1">
+                <p className="text-xs text-gray-400 dark:text-gray-300 mt-1">
                   {k.sub}
                 </p>
               </div>

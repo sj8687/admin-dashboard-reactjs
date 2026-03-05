@@ -7,37 +7,36 @@ import { fetchUsersRequest } from "../../features/post/postSlice";
 
 export default function Users() {
   const dispatch = useDispatch();
+  const { users, usersLoading } = useSelector((state: RootState) => state.posts);
 
-  const { users, usersLoading } = useSelector(
-    (state: RootState) => state.posts
-  );
+  const [search, setSearch] = useState("");
+  const [roleFilter, setRoleFilter] = useState("all");
 
   useEffect(() => {
     dispatch(fetchUsersRequest());
   }, [dispatch]);
 
-  const [search, setSearch] = useState("");
-  const [roleFilter, setRoleFilter] = useState("all");
-
-  const filtered = useMemo(() => {
-    return users.filter((u) => {
-      const s =
-        u.name.toLowerCase().includes(search.toLowerCase()) ||
-        u.email.toLowerCase().includes(search.toLowerCase());
-      return s && (roleFilter === "all" || u.role === roleFilter);
-    });
-  }, [users, search, roleFilter]);
+  const filtered = useMemo(
+    () =>
+      users.filter(
+        (u) =>
+          (u.name.toLowerCase().includes(search.toLowerCase()) ||
+            u.email.toLowerCase().includes(search.toLowerCase())) &&
+          (roleFilter === "all" || u.role === roleFilter)
+      ),
+    [users, search, roleFilter]
+  );
 
   return (
-    <div className="space-y-6 px-4 sm:px-6 lg:px-8 py-6">
-
+    <div className="space-y-6 px-4 sm:px-6 lg:px-8 py-6 bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors duration-300">
+      
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
         <div>
-          <h1 className="font-display text-xl sm:text-2xl lg:text-3xl font-bold text-white">
+          <h1 className="font-display text-xl sm:text-2xl lg:text-3xl font-bold text-gray-800 dark:text-slate-100">
             Users
           </h1>
-          <p className="text-slate-400 text-sm mt-1">
+          <p className="text-gray-500 dark:text-slate-400 text-sm mt-1">
             {filtered.length} registered users
           </p>
         </div>
@@ -53,7 +52,7 @@ export default function Users() {
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           placeholder="Search users..."
-          className="w-full lg:flex-1 bg-slate-800/60 border border-slate-700 text-slate-200 placeholder-slate-500 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-indigo-500"
+          className="w-full lg:flex-1 bg-white dark:bg-slate-800 border border-gray-300 dark:border-slate-700 text-gray-900 dark:text-slate-200 placeholder-gray-400 dark:placeholder-slate-500 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition"
         />
 
         <div className="flex flex-wrap gap-2">
@@ -61,10 +60,10 @@ export default function Users() {
             <button
               key={r}
               onClick={() => setRoleFilter(r)}
-              className={`px-3 py-2 rounded-xl text-xs font-semibold capitalize transition-all ${
+              className={`px-3 py-2 rounded-xl text-xs font-semibold capitalize transition ${
                 roleFilter === r
-                  ? "bg-indigo-600 text-white"
-                  : "bg-slate-700/50 text-slate-400 hover:bg-slate-700"
+                  ? "bg-indigo-600 text-white shadow-sm"
+                  : "bg-gray-100 dark:bg-slate-700 text-gray-700 dark:text-slate-300 hover:bg-gray-200 dark:hover:bg-slate-600"
               }`}
             >
               {r}
@@ -73,71 +72,78 @@ export default function Users() {
         </div>
       </div>
 
+      {/* Users List */}
       <Card className="overflow-hidden">
-
-        {/* Loading State */}
         {usersLoading ? (
-          <div className="py-20 text-center text-slate-400">
+          <div className="py-20 text-center text-gray-400 dark:text-slate-400">
             Loading users...
           </div>
         ) : (
           <>
             {/* Desktop Table */}
-            <div className="hidden md:block overflow-x-auto">
+            <div className="hidden md:block dark:bg-slate-900 bg-white overflow-x-auto">
               <table className="w-full text-sm">
                 <thead>
-                  <tr className="border-b border-slate-700/60">
-                    {["User", "Email", "Phone", "Role", "Orders", "City", "Actions"].map(
-                      (h) => (
-                        <th
-                          key={h}
-                          className="px-5 py-3.5 text-left text-xs font-semibold text-slate-500 uppercase"
-                        >
-                          {h}
-                        </th>
-                      )
-                    )}
+                  <tr className="border-b border-gray-200 dark:border-slate-700">
+                    {["User", "Email", "Phone", "Role", "Orders", "City", "Actions"].map((h) => (
+                      <th
+                        key={h}
+                        className="px-5 py-3.5 text-left text-xs font-semibold text-gray-500 dark:text-slate-400 uppercase"
+                      >
+                        {h}
+                      </th>
+                    ))}
                   </tr>
                 </thead>
 
                 <tbody>
                   {filtered.map((u) => (
-                    <tr key={u.id} className="border-b border-slate-700/30">
+                    <tr
+                      key={u.id}
+                      className="border-b border-gray-200 dark:border-slate-700 hover:bg-gray-100 dark:hover:bg-slate-800 transition"
+                    >
                       <td className="px-5 py-3.5">
                         <div className="flex items-center gap-3">
                           <Avatar initials={u.avatar} size="w-8 h-8" text="text-xs" />
                           <div>
-                            <p className="font-semibold text-white">
+                            <p className="font-semibold text-gray-900 dark:text-white">
                               {u.name}
                             </p>
-                            <p className="text-xs text-slate-500">{u.id}</p>
+                            <p className="text-xs text-gray-500 dark:text-slate-400">
+                              {u.id}
+                            </p>
                           </div>
                         </div>
                       </td>
-                      <td className="px-5 py-3.5 text-slate-400 text-xs">
+
+                      <td className="px-5 py-3.5 text-gray-700 dark:text-slate-300 text-xs">
                         {u.email}
                       </td>
-                      <td className="px-5 py-3.5 text-slate-400 text-xs">
+
+                      <td className="px-5 py-3.5 text-gray-700 dark:text-slate-300 text-xs">
                         {u.phone}
                       </td>
-                      <td className="px-5 py-3.5 text-slate-300 capitalize">
+
+                      <td className="px-5 py-3.5 text-gray-800 dark:text-slate-200 capitalize">
                         {u.role}
                       </td>
-                      <td className="px-5 py-3.5 font-bold text-white">
+
+                      <td className="px-5 py-3.5 font-bold text-gray-900 dark:text-white">
                         {u.orders}
                       </td>
-                      <td className="px-5 py-3.5 text-slate-400 text-xs">
+
+                      <td className="px-5 py-3.5 text-gray-700 dark:text-slate-400 text-xs">
                         {u.city}
                       </td>
-                      <td className="px-5 py-3.5">
-                        <div className="flex gap-2">
-                          <button className="text-xs font-semibold text-indigo-400 bg-indigo-500/10 px-2.5 py-1 rounded-lg">
-                            Edit
-                          </button>
-                          <button className="text-xs font-semibold text-red-400 bg-red-500/10 px-2.5 py-1 rounded-lg">
-                            Ban
-                          </button>
-                        </div>
+
+                      <td className="px-5 py-3.5 flex gap-2">
+                        <button className="text-xs font-semibold text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-500/10 hover:bg-indigo-100 dark:hover:bg-indigo-500/20 px-2.5 py-1 rounded-lg transition">
+                          Edit
+                        </button>
+
+                        <button className="text-xs font-semibold text-red-600 dark:text-red-400 bg-red-50 dark:bg-red-500/10 hover:bg-red-100 dark:hover:bg-red-500/20 px-2.5 py-1 rounded-lg transition">
+                          Ban
+                        </button>
                       </td>
                     </tr>
                   ))}
@@ -145,38 +151,45 @@ export default function Users() {
               </table>
             </div>
 
-            {/* Mobile Card Layout */}
+            {/* Mobile Cards */}
             <div className="md:hidden p-4 space-y-4">
               {filtered.map((u) => (
                 <div
                   key={u.id}
-                  className="bg-slate-800/50 rounded-xl p-4 space-y-3"
+                  className="bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 rounded-xl p-4 space-y-3"
                 >
                   <div className="flex items-center gap-3">
                     <Avatar initials={u.avatar} size="w-8 h-8" text="text-xs" />
                     <div>
-                      <p className="text-white font-semibold">{u.name}</p>
-                      <p className="text-xs text-slate-400">{u.email}</p>
+                      <p className="text-gray-900 dark:text-white font-semibold">
+                        {u.name}
+                      </p>
+                      <p className="text-xs text-gray-500 dark:text-slate-400">
+                        {u.email}
+                      </p>
                     </div>
                   </div>
 
-                  <div className="flex justify-between text-xs text-slate-400">
-                    <span>{u.role}</span>
+                  <div className="flex justify-between text-xs text-gray-700 dark:text-slate-400">
+                    <span className="capitalize">{u.role}</span>
                     <span>{u.city}</span>
                   </div>
 
                   <div className="flex justify-between text-sm">
-                    <span className="text-slate-300">
+                    <span className="text-gray-800 dark:text-slate-200">
                       Orders: {u.orders}
                     </span>
-                    <span className="text-slate-400">{u.phone}</span>
+                    <span className="text-gray-700 dark:text-slate-400">
+                      {u.phone}
+                    </span>
                   </div>
 
                   <div className="flex gap-2 pt-2">
-                    <button className="flex-1 text-xs font-semibold text-indigo-400 bg-indigo-500/10 px-2.5 py-2 rounded-lg">
+                    <button className="flex-1 text-xs font-semibold text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-500/10 hover:bg-indigo-100 dark:hover:bg-indigo-500/20 px-2.5 py-2 rounded-lg transition">
                       Edit
                     </button>
-                    <button className="flex-1 text-xs font-semibold text-red-400 bg-red-500/10 px-2.5 py-2 rounded-lg">
+
+                    <button className="flex-1 text-xs font-semibold text-red-600 dark:text-red-400 bg-red-50 dark:bg-red-500/10 hover:bg-red-100 dark:hover:bg-red-500/20 px-2.5 py-2 rounded-lg transition">
                       Ban
                     </button>
                   </div>
@@ -185,7 +198,7 @@ export default function Users() {
             </div>
 
             {filtered.length === 0 && (
-              <div className="text-center py-12 text-slate-500">
+              <div className="text-center py-12 text-gray-500 dark:text-slate-400">
                 No users found
               </div>
             )}

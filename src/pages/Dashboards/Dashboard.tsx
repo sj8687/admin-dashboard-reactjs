@@ -5,7 +5,9 @@ import type { RootState } from "../../app/store";
 import { useEffect } from "react";
 import { fetchStatsRequest } from "../../features/post/postSlice";
 
+
 export default function Dashboard() {
+
   const dispatch = useDispatch();
 
   const { stats, statsLoading } = useSelector(
@@ -16,20 +18,20 @@ export default function Dashboard() {
     dispatch(fetchStatsRequest());
   }, [dispatch]);
 
-  if (statsLoading) return <p className="text-white text-center items-center">Loading...</p>;
+  if (statsLoading) return <p className="dark:text-white text-black text-center items-center">Loading...</p>;
 
   const kpis = stats
     ? [
-        {
-          label: "Total Revenue",
-          value: `₹${(stats.totalRevenue / 100000).toFixed(1)}L`,
-        },
-      ]
+      {
+        label: "Total Revenue",
+        value: `₹${(stats.totalRevenue / 100000).toFixed(1)}L`,
+      },
+    ]
     : [];
 
   return (
     <>
-      <div className=" overflow-x-auto scrollbar-hide">
+      <div className=" overflow-x-auto   scrollbar-hide">
         {kpis.map((k) => (
           <KpiCard key={k.label} {...k} />
         ))}
