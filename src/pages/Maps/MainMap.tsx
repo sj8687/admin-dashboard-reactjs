@@ -5,7 +5,7 @@ import L from "leaflet"
 import "leaflet/dist/leaflet.css"
 
 
-export default function PuneMap() {
+export default function LiveTracking() {
   const deliveryIcon = new L.Icon({
     iconUrl: "https://maps.google.com/mapfiles/ms/icons/red-dot.png",
     iconSize: [32, 32],

@@ -77,6 +77,7 @@ export const STATUS_MAP = {
 
 export const NAV = [
   { id: "dashboard", label: "Dashboard", icon: "▦" },
+  {id: "livetracking", label:"LiveTracking", icon: "🗺️"},
   { id: "orders",    label: "Orders",    icon: "📦" },
   { id: "drivers",   label: "Drivers",   icon: "🚚" },
   { id: "users",     label: "Users",     icon: "👥" },

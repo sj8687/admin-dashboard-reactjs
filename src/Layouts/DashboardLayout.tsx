@@ -8,6 +8,7 @@ import Analytics from "../pages/analytics/analytics";
 import Settings from "../pages/settings/settings";
 import { useTheme } from "../components/ui/DarkmodeToggle";
 import Header from "@/pages/Dashboards/Header";
+import LiveTracking from "@/pages/Maps/MainMap";
 
 const PAGES: any = {
     dashboard: Dashboard,
@@ -16,6 +17,7 @@ const PAGES: any = {
     users: Users,
     analytics: Analytics,
     settings: Settings,
+    livetracking: LiveTracking
 };
 
 export default function DashboardLayout() {
