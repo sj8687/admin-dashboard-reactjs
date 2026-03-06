@@ -23,6 +23,9 @@ interface OrdersState {
   revenueChart: RevenueChartItem[];
   pieData: PieChartItem[];
 
+  message: string | null;
+
+  Loginloading: boolean;
   pieLoading: boolean;
   ordersLoading: boolean;
   statsLoading: boolean;
@@ -31,6 +34,9 @@ interface OrdersState {
   usersLoading: boolean;
   revenueLoading: boolean;
 
+  LoginSuccess: boolean;
+
+  loginError: string | null;
   pieError: string | null;
   revenueError: string | null
   usersError: string | null;
@@ -38,6 +44,7 @@ interface OrdersState {
   activityError: string | null;
   error: string | null;
 }
+
 
 const initialState: OrdersState = {
   stats: null,
@@ -48,7 +55,9 @@ const initialState: OrdersState = {
   revenueChart: [],
   pieData: [],
 
+  message: null,
 
+  Loginloading: false,
   pieLoading: false,
   revenueLoading: false,
   driversLoading: false,
@@ -56,6 +65,10 @@ const initialState: OrdersState = {
   statsLoading: false,
   activityLoading: false,
   usersLoading: false,
+
+  LoginSuccess: false,
+
+  loginError: null,
 
   pieError: null,
 
@@ -186,6 +199,23 @@ const postSlice = createSlice({
       state.pieLoading = false;
       state.pieError = action.payload;
     },
+
+
+    loginRequest(state, action: PayloadAction<{ email: string }>) {
+      state.Loginloading = true;
+      state.error = null;
+      state.message = null;
+    },
+
+    loginSuccess(state, action: PayloadAction<string>) {
+      state.Loginloading = false;
+      state.message = action.payload;
+    },
+
+    loginFailure(state, action: PayloadAction<string>) {
+      state.Loginloading = false;
+      state.error = action.payload;
+    },
   },
 });
 
@@ -214,6 +244,9 @@ export const {
   fetchPieRequest,
   fetchPieSuccess,
   fetchPieFailure,
+  loginRequest,
+  loginSuccess,
+  loginFailure,
 } = postSlice.actions;
 
 export default postSlice.reducer;

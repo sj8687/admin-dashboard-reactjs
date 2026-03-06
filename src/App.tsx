@@ -1,14 +1,34 @@
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import Login from "./pages/Login/login";
+import ProtectedRoute from "./Protectedroute/protected";
+import DashboardLayout from "./Layouts/DashboardLayout";
 import "./index.css";
 import "./App.css";
-import DashboardLayout from "./Layouts/DashboardLayout";
-import { ThemeProvider } from "./components/ui/DarkmodeToggle";
 
-export default function App() {
+function App() {
   return (
-    <>
-      <ThemeProvider>
-        <DashboardLayout />
-      </ThemeProvider>
-    </>
-  )
+    <BrowserRouter>
+      <Routes>
+
+        {/* Redirect root */}
+        <Route path="/" element={<Navigate to="/login" />} />
+
+        {/* Login */}
+        <Route path="/login" element={<Login/>} />
+
+        {/* Protected dashboard */}
+        <Route
+          path="/dashboard"
+          element={
+            <ProtectedRoute>
+              <DashboardLayout />
+            </ProtectedRoute>
+          }
+        />
+
+      </Routes>
+    </BrowserRouter>
+  );
 }
+
+export default App;

@@ -1,5 +1,5 @@
 import { call, put, takeLatest } from "redux-saga/effects";
-import { activityApi, driversApi, ordersApi, pieApi, revenueApi, statsApi, usersApi } from "./api";
+import { activityApi, driversApi, loginAPI, ordersApi, pieApi, revenueApi, statsApi, usersApi } from "./api";
 import {
   fetchOrdersRequest,
   fetchOrdersSuccess,
@@ -22,6 +22,9 @@ import {
   fetchPieSuccess,
   fetchPieFailure,
   fetchPieRequest,
+  loginRequest,
+  loginSuccess,
+  loginFailure,
 
 } from "./postSlice";
 import type { Driver, PieChartItem, RevenueChartItem, User } from "../../constants/type";
@@ -110,6 +113,21 @@ function* handleFetchPie(): SagaIterator {
 }
 
 
+function* handleLogin(action: any): any {
+  try {
+    const data = yield call(loginAPI, action.payload.email);
+
+    if (data.status === "success") {
+      yield put(loginSuccess(data.message));
+    } else {
+      yield put(loginFailure("Login failed"));
+    }
+  } catch (error: any) {
+    yield put(loginFailure(error.message));
+  }
+}
+
+
 
 export default function* postSaga(): SagaIterator {
   // yield takeLatest(fetchPostsRequest.type, workerFetchPosts);
@@ -120,6 +138,8 @@ export default function* postSaga(): SagaIterator {
   yield takeLatest(fetchUsersRequest.type, handleFetchUsers);
   yield takeLatest(fetchRevenueRequest.type, handleFetchRevenue);
   yield takeLatest(fetchPieRequest.type, handleFetchPie);
+  yield takeLatest(loginRequest.type, handleLogin);
+
 
 }
 

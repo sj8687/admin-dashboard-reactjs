@@ -1,4 +1,4 @@
-import { STATS, type Activity, type Driver, type Order, type PieChartItem, type RevenueChartItem, type User } from "../../constants/type";
+import { LoginResponse, STATS, type Activity, type Driver, type Order, type PieChartItem, type RevenueChartItem, type User } from "../../constants/type";
 import { ACTIVITY, DRIVERS, ORDERS, PIE_DATA, REVENUE_CHART, USERS } from "../../mockdata/data";
 
 
@@ -84,3 +84,17 @@ export const pieApi = {
     });
   },
 };
+
+
+
+export async function loginAPI(email: string): Promise<LoginResponse> {
+  const res = await fetch("http://localhost:3000/auth/login", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ email }),
+  });
+
+  return res.json();
+}

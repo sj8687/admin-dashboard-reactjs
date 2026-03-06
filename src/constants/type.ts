@@ -121,3 +121,8 @@ export type Location = {
   lat: number
   lng: number
 }
+
+export interface LoginResponse {
+  status: string;
+  message: string;
+}
