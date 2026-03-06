@@ -10,7 +10,7 @@ import { RootState } from "@/app/store";
 
 export default function Login() {
   const dispatch = useDispatch();
-  const { Loginloading, loginError, LoginSuccess } = useSelector(
+  const { Loginloading,  } = useSelector(
     (state: RootState) => state.posts
   )
 
