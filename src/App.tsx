@@ -2,6 +2,7 @@ import { BrowserRouter as BrowserRouter, Routes, Route, Navigate } from "react-r
 import Login from "./pages/Login/login";
 import ProtectedRoute from "./Protectedroute/protected";
 import DashboardLayout from "./Layouts/DashboardLayout";
+import VerifyLogin from "./pages/Verify/verify";
 import "./index.css";
 import "./App.css";
 
@@ -14,7 +15,10 @@ function App() {
         <Route path="/" element={<Navigate to="/login" />} />
 
         {/* Login */}
-        <Route path="/login" element={<Login/>} />
+        <Route path="/login" element={<Login />} />
+
+        <Route path="/auth" element={<VerifyLogin />} />
+
 
         {/* Protected dashboard */}
         <Route

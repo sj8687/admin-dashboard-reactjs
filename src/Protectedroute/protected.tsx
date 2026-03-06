@@ -6,11 +6,11 @@ interface Props {
 
 export default function ProtectedRoute({ children }: Props) {
 
-  const token = document.cookie.includes("token");
+  // const token = document.cookie.includes("token");
 
-  if (!token) {
-    return <Navigate to="/login" replace />;
-  }
+  // if (!token) {
+  //   return <Navigate to="/login" replace />;
+  // }
 
   return <>{children}</>;
 }

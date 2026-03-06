@@ -88,7 +88,7 @@ export const pieApi = {
 
 
 export async function loginAPI(email: string): Promise<LoginResponse> {
-  const res = await fetch("http://localhost:3000/auth/login", {
+  const res = await fetch("http://localhost:3000/api/super-admin/signin", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
