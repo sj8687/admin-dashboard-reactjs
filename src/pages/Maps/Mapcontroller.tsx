@@ -16,13 +16,13 @@ export default function MapControls() {
       <div className="flex flex-col gap-1">
         <button
           onClick={() => map.setZoom(map.getZoom() + zoomStep)}
-          className="bg-white border border-gray-300 rounded-md w-12 h-12 flex items-center justify-center shadow-md hover:bg-gray-100"
+          className="bg-white border text-gray-950 border-gray-300 rounded-md w-12 h-12 flex items-center justify-center shadow-md hover:bg-gray-100"
         >
           <ZoomIn size={24} />
         </button>
         <button
           onClick={() => map.setZoom(map.getZoom() - zoomStep)}
-          className="bg-white border border-gray-300 rounded-md w-12 h-12 flex items-center justify-center shadow-md hover:bg-gray-100"
+          className="bg-white border text-gray-950 border-gray-300 rounded-md w-12 h-12 flex items-center justify-center shadow-md hover:bg-gray-100"
         >
           <ZoomOut size={24} />
         </button>
@@ -32,27 +32,27 @@ export default function MapControls() {
       <div className="flex flex-col gap-1 mt-2">
         <button
           onClick={() => map.panBy([0, -100])}
-          className="bg-white border border-gray-300 rounded-md w-12 h-12 flex items-center justify-center shadow-md hover:bg-gray-100"
+          className="bg-white border border-gray-300 text-gray-950 rounded-md w-12 h-12 flex items-center justify-center shadow-md hover:bg-gray-100"
         >
           <ArrowUp size={24} />
         </button>
         <div className="flex gap-1">
           <button
             onClick={() => map.panBy([-100, 0])}
-            className="bg-white border border-gray-300 rounded-md w-12 h-12 flex items-center justify-center shadow-md hover:bg-gray-100"
+            className="bg-white border text-gray-950 border-gray-300 rounded-md w-12 h-12 flex items-center justify-center shadow-md hover:bg-gray-100"
           >
             <ArrowLeft size={24} />
           </button>
           <button
             onClick={() => map.panBy([100, 0])}
-            className="bg-white border border-gray-300 rounded-md w-12 h-12 flex items-center justify-center shadow-md hover:bg-gray-100"
+            className="bg-white border text-gray-950 border-gray-300 rounded-md w-12 h-12 flex items-center justify-center shadow-md hover:bg-gray-100"
           >
             <ArrowRight size={24} />
           </button>
         </div>
         <button
           onClick={() => map.panBy([0, 100])}
-          className="bg-white border border-gray-300 rounded-md w-12 h-12 flex items-center justify-center shadow-md hover:bg-gray-100"
+          className="bg-white border text-gray-950 border-gray-300 rounded-md w-12 h-12 flex items-center justify-center shadow-md hover:bg-gray-100"
         >
           <ArrowDown size={24} />
         </button>

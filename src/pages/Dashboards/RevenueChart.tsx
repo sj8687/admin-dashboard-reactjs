@@ -27,7 +27,7 @@ export default function RevenueChart() {
     <div>
       <div className="grid grid-cols-3 gap-4">
         <Card className="col-span-2 p-6">
-          <h3 className="font-display font-bold text-white mb-5">Revenue & Orders — 2024</h3>
+          <h3 className="font-display font-bold text-black dark:text-white mb-5">Revenue & Orders — 2024</h3>
           <ResponsiveContainer width="100%" height={210}>
             <LineChart data={revenueChart}>
               <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" />
@@ -45,7 +45,7 @@ export default function RevenueChart() {
         </Card>
 
         <Card className="p-6">
-          <h3 className="font-display font-bold text-white mb-4">Order Status</h3>
+          <h3 className="font-display font-bold text-black dark:text-white mb-4">Order Status</h3>
           <ResponsiveContainer width="100%" height={150}>
             <PieChart>
               <Pie data={pieData} cx="50%" cy="50%" innerRadius={42} outerRadius={65} dataKey="value">

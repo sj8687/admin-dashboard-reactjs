@@ -10,12 +10,13 @@ import { RootState } from "@/app/store";
 
 export default function Login() {
   const dispatch = useDispatch();
-  const { Loginloading,  } = useSelector(
+  const { Loginloading, } = useSelector(
     (state: RootState) => state.posts
   )
 
   const [email, setEmail] = useState("");
   const [verified, setVerified] = useState(false);
+ 
 
   const validateEmail = (value: string) => {
     const regex =

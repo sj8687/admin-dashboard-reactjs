@@ -41,7 +41,7 @@ export default function Analytics() {
 
       {/* Header */}
       <div>
-        <h1 className="font-display text-xl sm:text-2xl lg:text-3xl font-bold text-white">
+        <h1 className="font-display text-xl sm:text-2xl lg:text-3xl font-bold text-black dark:text-white">
           Analytics
         </h1>
         <p className="text-slate-400 text-sm mt-1">
@@ -54,7 +54,7 @@ export default function Analytics() {
         
         {/* Revenue Chart */}
         <Card className="p-4 sm:p-6">
-          <h3 className="font-bold text-white mb-5 text-lg">
+          <h3 className="font-bold text-black dark:text-white mb-5 text-lg">
             Monthly Revenue (₹)
           </h3>
 
@@ -93,7 +93,7 @@ export default function Analytics() {
 
         {/* Orders Chart */}
         <Card className="p-4 sm:p-6">
-          <h3 className="font-bold text-white mb-5 text-lg">
+          <h3 className="font-bold text-black dark:text-white mb-5 text-lg">
             Monthly Orders
           </h3>
 
@@ -118,7 +118,7 @@ export default function Analytics() {
       {/* Leaderboard */}
       <Card className="overflow-hidden">
         <div className="p-4 sm:p-6 border-b border-slate-700/50">
-          <h3 className="font-bold text-white text-lg">
+          <h3 className="font-bold text-black dark:text-white text-lg">
             Driver Performance Leaderboard
           </h3>
         </div>

@@ -1,36 +1,63 @@
-import { BrowserRouter as BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import Login from "./pages/Login/login";
-import ProtectedRoute from "./Protectedroute/protected";
-import DashboardLayout from "./Layouts/DashboardLayout";
-import VerifyLogin from "./pages/Verify/verify";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { lazy, Suspense } from "react";
+
 import "./index.css";
 import "./App.css";
+
+import Login from "./pages/Login/login";
+import VerifyLogin from "./pages/Verify/verify";
+import ProtectedRoute from "./Protectedroute/protected";
+
+const DashboardLayout = lazy(() => import("./Layouts/DashboardLayout"));
+
+const Dashboard = lazy(() => import("./pages/Dashboards/Dashboard"));
+const Orders = lazy(() => import("./pages/Orders/Orders"));
+const Drivers = lazy(() => import("./pages/Drivers/Driver"));
+const Users = lazy(() => import("./pages/Users/User"));
+const Analytics = lazy(() => import("./pages/analytics/analytics"));
+const Settings = lazy(() => import("./pages/settings/settings"));
+const LiveTracking = lazy(() => import("./pages/Maps/MainMap"));
 
 function App() {
   return (
     <BrowserRouter>
-      <Routes>
+      <Suspense fallback={<div className="p-6">Loading...</div>}>
 
-        {/* Redirect root */}
-        <Route path="/" element={<Navigate to="/login" />} />
+        <Routes>
 
-        {/* Login */}
-        <Route path="/login" element={<Login />} />
+          {/* redirect */}
+          <Route path="/" element={<Navigate to="/login" />} />
 
-        <Route path="/auth" element={<VerifyLogin />} />
+          {/* public routes */}
+          <Route path="/login" element={<Login />} />
+          <Route path="/auth" element={<VerifyLogin />} />
 
+          {/* protected dashboard */}
+          <Route
+            path="/dashboard"
+            element={
+              <ProtectedRoute>
+                <DashboardLayout />
+              </ProtectedRoute>
+            }
+          >
 
-        {/* Protected dashboard */}
-        <Route
-          path="/dashboard"
-          element={
-            <ProtectedRoute>
-              <DashboardLayout />
-            </ProtectedRoute>
-          }
-        />
+            {/* nested routes */}
+            <Route index element={<Dashboard />} />
+            <Route path="orders" element={<Orders />} />
+            <Route path="drivers" element={<Drivers />} />
+            <Route path="users" element={<Users />} />
+            <Route path="analytics" element={<Analytics />} />
+            <Route path="settings" element={<Settings />} />
 
-      </Routes>
+            {/* heavy map page */}
+            <Route path="livetracking" element={<LiveTracking />} />
+
+          </Route>
+
+        </Routes>
+
+      </Suspense>
     </BrowserRouter>
   );
 }
