@@ -39,7 +39,7 @@ export default function Login() {
     );
   };
 
-  if (Loginloading) return <p className="text-black ">its loading right now</p>
+  if (Loginloading) return <p className="text-black text-3xl text-center items-center justify-center">its loading right now</p>
 
   return (
     <div className="min-h-screen flex items-center justify-center  px-4">
@@ -80,7 +80,7 @@ export default function Login() {
               {!verified ? (
                 <Button
                   className="bg-transparent text-yellow-500 text-[17px]"
-                  size="sm"
+                  // size="sm"
                   variant="secondary"
                   onClick={handleVerify}
                 >

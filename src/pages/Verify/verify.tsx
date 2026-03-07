@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
+import axios from "axios"
 
 export default function VerifyLogin() {
   const [params] = useSearchParams();
@@ -16,18 +17,20 @@ export default function VerifyLogin() {
 
     const verify = async () => {
       try {
-        const res = await fetch("http://localhost:3000/auth/verify", {
-          method: "POST",
-          credentials: "include",
+        const res = await axios.get("http://localhost:3000/api/super-admin/verify", {
+          withCredentials: true,
           headers: {
-            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
           },
-          body: JSON.stringify({ token }),
         });
 
-        if (!res.ok) {
+        console.log("hiii there verify", res.data);
+
+        if (res.status !== 200) {
           throw new Error("Verification failed");
         }
+
+        console.log(res.data);
 
         // backend should set cookie here
         navigate("/dashboard");
