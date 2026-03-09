@@ -5,6 +5,7 @@ import { useTheme } from "../components/ui/DarkmodeToggle";
 import Header from "@/pages/Dashboards/Header";
 import { Suspense } from "react";
 import { Spinner } from "@/components/ui/spinner";
+import { LogOut } from "lucide-react";
 
 export default function DashboardLayout() {
     const [collapsed, setCollapsed] = useState(false);
@@ -18,11 +19,11 @@ export default function DashboardLayout() {
 
     // get active page from URL
     const pathParts = location.pathname.split("/");
-    console.log("pathparts",pathParts);
-    
+    console.log("pathparts", pathParts);
+
     const activePage = pathParts[pathParts.length - 1] || "dashboard";
 
-        console.log("activePage",activePage);
+    console.log("activePage", activePage);
 
 
     // navigation click
@@ -107,6 +108,26 @@ export default function DashboardLayout() {
                         })}
                     </nav>
 
+                    {/* Logout */}
+                    <div className="p-2 mt-auto border-t border-slate-200 dark:border-slate-800">
+                        <button
+                            onClick={() => {
+                                console.log("logout clicked");
+                                // logout logic here
+                            }}
+                            className={`
+      w-full flex items-center
+      ${collapsed ? "justify-center" : "gap-3"}
+      px-3 py-2.5 rounded-xl
+      text-red-500 hover:bg-red-500/10
+      transition-all
+    `}
+                        >
+                            <span className="text-lg"><LogOut size={18} /></span>
+                            {!collapsed && <span className="text-sm font-medium">Logout</span>}
+                        </button>
+                    </div>
+
                 </aside>
 
                 {/* Main content */}
@@ -125,7 +146,7 @@ export default function DashboardLayout() {
                     <main className="flex-1 overflow-y-auto p-4 sm:p-6">
                         <Suspense fallback={
                             <div className="p-6 animate-pulse flex justify-center items-center h-screen">
-                               <Spinner className="size-12 text-gray-900 dark:text-slate-200" />
+                                <Spinner className="size-12 text-gray-900 dark:text-slate-200" />
                             </div>
                         }>
                             <Outlet /> {/* only this changes on navigation */}
