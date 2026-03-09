@@ -7,6 +7,7 @@ import "./App.css";
 import Login from "./pages/Login/login";
 import VerifyLogin from "./pages/Verify/verify";
 import ProtectedRoute from "./Protectedroute/protected";
+import { Spinner } from "./components/ui/spinner";
 
 const DashboardLayout = lazy(() => import("./Layouts/DashboardLayout"));
 
@@ -21,7 +22,8 @@ const LiveTracking = lazy(() => import("./pages/Maps/MainMap"));
 function App() {
   return (
     <BrowserRouter>
-      <Suspense fallback={<div className="p-6">Loading...</div>}>
+      <Suspense fallback={<div className="flex justify-center items-center h-screen"><Spinner className="size-12 text-gray-900 dark:text-slate-200" />
+      </div>}>
 
         <Routes>
 
