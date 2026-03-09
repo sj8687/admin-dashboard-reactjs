@@ -1,6 +1,8 @@
 import Avatar from "@/components/ui/Avatar";
 import { useTheme } from "@/components/ui/DarkmodeToggle";
 import { Switch } from "@/components/ui/switch";
+import AdminProfile from "./Profile";
+import Profile from "./Profile";
 
 type HeaderProps = {
   active: string;
@@ -58,23 +60,9 @@ export default function Header({ active, toggleSidebar }: HeaderProps) {
 
         </div>
 
-        {/* User */}
-        <div className="flex items-center gap-2 lg:gap-3">
-
-          <Avatar initials="SA" size="w-8 h-8" text="text-xs" />
-
-          <div className="hidden sm:block">
-
-            <p className="text-xs font-bold text-gray-800 dark:text-white">
-              Super Admin
-            </p>
-
-            <p className="text-xs text-gray-500 dark:text-gray-400">
-              admin@logistics.com
-            </p>
-
-          </div>
-
+        {/* Admin card */}
+        <div className="flex items-center">
+          <AdminProfile />
         </div>
 
       </div>
