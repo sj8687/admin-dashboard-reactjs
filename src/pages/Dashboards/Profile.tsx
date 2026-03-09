@@ -1,4 +1,5 @@
 import Avatar from "@/components/ui/Avatar"
+import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { useState, useEffect } from "react"
 
@@ -15,7 +16,6 @@ export default function AdminProfileWrapper() {
   // Placeholder for fetching user info from backend
   useEffect(() => {
     async function fetchUser() {
-      // TODO: replace with your API call
       // const response = await fetch("/api/user")
       // const data = await response.json()
       // setUser(data)
@@ -39,7 +39,7 @@ export default function AdminProfileWrapper() {
 
       {/* Conditional Profile Card */}
       {isOpen && (
-        <Card className="absolute top-14 right-2 w-[90vw] max-w-[400px] p-6 shadow-xl z-50 transition-all">          {/* Avatar */}
+        <Card className="absolute top-14 right-2 w-[90vw] max-w-[350px] p-6 shadow-xl z-50 transition-all">          {/* Avatar */}
           <div className="flex justify-center mb-4">
             <img
               src={user.avatar || "adminlogo2.webp"}
@@ -55,9 +55,11 @@ export default function AdminProfileWrapper() {
           </div>
 
           {/* Logout Button */}
-          <button className="w-full bg-red-600 hover:bg-red-500 text-white py-2 rounded-xl font-semibold transition-colors">
+          <div className="flex justify-center items-center">
+          <Button className="w-[85%] bg-red-600 hover:bg-red-500 text-white p-5 rounded-xl font-semibold transition-colors">
             Logout
-          </button>
+          </Button>
+          </div>
         </Card>
       )}
     </div>
