@@ -38,12 +38,12 @@ export default function LiveTracking() {
 
   // Tile URLs and attribution based on theme
   const tileUrl = isDark
-    ? "https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png"
-    : "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+  ? "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
+  : "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
 
-  const attribution = isDark
-    ? '&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-    : "© OpenStreetMap contributors"
+const attribution = isDark
+  ? '&copy; <a href="https://carto.com/">CARTO</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+  : "© OpenStreetMap contributors"
 
   return (
     <div className="h-screen w-full relative overflow-x-hidden">
