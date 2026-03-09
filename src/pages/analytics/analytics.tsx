@@ -16,7 +16,9 @@ import {
   fetchDriversRequest,
   fetchRevenueRequest,
 } from "../../features/post/postSlice";
-import RevenueChart from "../Dashboards/RevenueChart";
+import React, { Suspense, lazy } from "react";
+
+const RevenueChart = lazy(() => import("../Dashboards/RevenueChart")); import { Spinner } from "@/components/ui/spinner";
 
 export default function Analytics() {
   const dispatch = useDispatch();
@@ -51,7 +53,7 @@ export default function Analytics() {
 
       {/* Charts Section */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        
+
         {/* Revenue Chart */}
         <Card className="p-4 sm:p-6">
           <h3 className="font-bold text-black dark:text-white mb-5 text-lg">
@@ -124,8 +126,8 @@ export default function Analytics() {
         </div>
 
         {leaderboardLoading ? (
-          <div className="py-16 text-center text-slate-400">
-            Loading drivers...
+          <div className="py-16 flex justify-center items-center text-center h-screen text-slate-400">
+            <Spinner className="size-12 text-gray-900 dark:text-slate-200" />
           </div>
         ) : (
           <>
@@ -197,7 +199,15 @@ export default function Analytics() {
         )}
       </Card>
 
-      <RevenueChart />
+      <Suspense
+        fallback={
+          <div className="flex items-center justify-center h-40">
+            <Spinner className="size-8" />
+          </div>
+        }
+      >
+        <RevenueChart />
+      </Suspense>
     </div>
   );
 }

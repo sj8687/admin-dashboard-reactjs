@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import type { RootState } from "../../app/store";
 import { fetchOrdersRequest } from "../../features/post/postSlice";
 import { useTheme } from "@/components/ui/DarkmodeToggle";
+import { Spinner } from "@/components/ui/spinner";
 
 export default function Orders() {
   const [search, setSearch] = useState("");
@@ -33,9 +34,9 @@ export default function Orders() {
 
   if (ordersLoading)
     return (
-      <div className="flex justify-center items-center h-[60vh]">
+      <div className="flex justify-center items-center h-screen">
         <p className={theme === "dark" ? "text-white" : "text-gray-900"}>
-          Loading...
+          <Spinner className="size-12 text-gray-900 dark:text-slate-200" />
         </p>
       </div>
     );
@@ -72,8 +73,8 @@ export default function Orders() {
 
       <Card
         className={`p-4 sm:p-6 ${theme === "dark"
-            ? "bg-slate-800 border border-slate-700"
-            : "bg-white border border-slate-200"
+          ? "bg-slate-800 border border-slate-700"
+          : "bg-white border border-slate-200"
           }`}
       >
 
@@ -84,8 +85,8 @@ export default function Orders() {
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search orders, customers..."
             className={`w-full lg:flex-1 rounded-xl px-4 py-2.5 text-sm outline-none border focus:border-indigo-500 ${theme === "dark"
-                ? "bg-slate-900/60 border-slate-700 text-gray-200 placeholder-gray-400"
-                : "bg-gray-100 border-gray-300 text-gray-900 placeholder-gray-500"
+              ? "bg-slate-900/60 border-slate-700 text-gray-200 placeholder-gray-400"
+              : "bg-gray-100 border-gray-300 text-gray-900 placeholder-gray-500"
               }`}
           />
 
@@ -95,10 +96,10 @@ export default function Orders() {
                 key={f}
                 onClick={() => setFilter(f)}
                 className={`px-3 py-2 rounded-xl text-xs font-semibold capitalize transition-all ${filter === f
-                    ? "bg-indigo-600 text-white"
-                    : theme === "dark"
-                      ? "bg-slate-700/50 text-gray-400 hover:bg-slate-700"
-                      : "bg-gray-200 text-gray-700 hover:bg-gray-300"
+                  ? "bg-indigo-600 text-white"
+                  : theme === "dark"
+                    ? "bg-slate-700/50 text-gray-400 hover:bg-slate-700"
+                    : "bg-gray-200 text-gray-700 hover:bg-gray-300"
                   }`}
               >
                 {f}
@@ -186,8 +187,8 @@ export default function Orders() {
             <div
               key={o.id}
               className={`rounded-xl p-4 space-y-2 ${theme === "dark"
-                  ? "bg-slate-800/50"
-                  : "bg-gray-100"
+                ? "bg-slate-800/50"
+                : "bg-gray-100"
                 }`}
             >
               <div className="flex justify-between items-center">

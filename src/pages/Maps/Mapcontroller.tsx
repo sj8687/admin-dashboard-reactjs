@@ -7,7 +7,7 @@ import { ArrowUp, ArrowDown, ArrowLeft, ArrowRight, ZoomIn, ZoomOut } from "luci
 // Controls Component
 export default function MapControls() {
   const map = useMap()
-  const step = 0.02 // move step in degrees
+  // const step = 0.02 // move step in degrees
   const zoomStep = 1
 
   return (

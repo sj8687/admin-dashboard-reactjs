@@ -1,42 +1,7 @@
-// // import { Navigate } from "react-router-dom";
-
-// interface Props {
-//   children: React.ReactNode;
-// }
-
-// export default function ProtectedRoute({ children }: Props) {
-
-//   const token = document.cookie.includes("access_token");
-
-//   console.log(token);
-  
-
-//   if (!token) {
-//     // return <Navigate to="/Dashboard" replace />;
-//   }
-
-//   return <>{children}</>;
-// }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 import { Navigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { Spinner } from "@/components/ui/spinner";
 
 interface Props {
   children: React.ReactNode;
@@ -62,10 +27,15 @@ export default function ProtectedRoute({ children }: Props) {
       });
   }, []);
 
-  if (loading) return <div>Loading...</div>;
+  if (loading)
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <Spinner className="size-12 text-gray-900 dark:text-slate-200" />
+      </div>
+    );
 
   if (!authorized) {
-    return <Navigate to="/login" replace />;
+//     return <Navigate to="/login" replace />;
   }
 
   return <>{children}</>;

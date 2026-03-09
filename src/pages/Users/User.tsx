@@ -4,6 +4,7 @@ import Avatar from "../../components/ui/Avatar";
 import { useDispatch, useSelector } from "react-redux";
 import type { RootState } from "../../app/store";
 import { fetchUsersRequest } from "../../features/post/postSlice";
+import { Spinner } from "@/components/ui/spinner";
 
 export default function Users() {
   const dispatch = useDispatch();
@@ -29,7 +30,7 @@ export default function Users() {
 
   return (
     <div className="space-y-6 px-4 sm:px-6 lg:px-8 py-6 bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors duration-300">
-      
+
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
         <div>
@@ -60,11 +61,10 @@ export default function Users() {
             <button
               key={r}
               onClick={() => setRoleFilter(r)}
-              className={`px-3 py-2 rounded-xl text-xs font-semibold capitalize transition ${
-                roleFilter === r
+              className={`px-3 py-2 rounded-xl text-xs font-semibold capitalize transition ${roleFilter === r
                   ? "bg-indigo-600 text-white shadow-sm"
                   : "bg-gray-100 dark:bg-slate-700 text-gray-700 dark:text-slate-300 hover:bg-gray-200 dark:hover:bg-slate-600"
-              }`}
+                }`}
             >
               {r}
             </button>
@@ -75,8 +75,8 @@ export default function Users() {
       {/* Users List */}
       <Card className="overflow-hidden">
         {usersLoading ? (
-          <div className="py-20 text-center text-gray-400 dark:text-slate-400">
-            Loading users...
+          <div className="flex items-center justify-center h-screen">
+            <Spinner className="size-12 text-gray-900 dark:text-slate-200" />
           </div>
         ) : (
           <>

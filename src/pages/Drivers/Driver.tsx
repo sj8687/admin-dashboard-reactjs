@@ -5,6 +5,7 @@ import Avatar from "../../components/ui/Avatar";
 import { useDispatch, useSelector } from "react-redux";
 import type { RootState } from "../../app/store";
 import { fetchDriversRequest } from "../../features/post/postSlice";
+import { Spinner } from "@/components/ui/spinner";
 
 export default function Drivers() {
   const dispatch = useDispatch();
@@ -20,8 +21,14 @@ export default function Drivers() {
     d.id.toLowerCase().includes(search.toLowerCase())
   );
 
-  if (driversLoading)
-    return <p className="text-gray-800 dark:text-gray-200 text-center py-10">Loading...</p>;
+  if (driversLoading) {
+  return (
+    <div className="flex items-center justify-center h-screen">
+      <Spinner className="size-12 text-gray-900 dark:text-slate-200" />
+    </div>
+  );
+}
+
 
   return (
     <div className="space-y-5 px-4 sm:px-6 lg:px-8 py-6">

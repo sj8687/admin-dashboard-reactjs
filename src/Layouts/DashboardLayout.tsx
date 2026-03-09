@@ -4,6 +4,7 @@ import { NAV } from "../mockdata/data";
 import { useTheme } from "../components/ui/DarkmodeToggle";
 import Header from "@/pages/Dashboards/Header";
 import { Suspense } from "react";
+import { Spinner } from "@/components/ui/spinner";
 
 export default function DashboardLayout() {
     const [collapsed, setCollapsed] = useState(false);
@@ -123,8 +124,8 @@ export default function DashboardLayout() {
                     {/* Page Content */}
                     <main className="flex-1 overflow-y-auto p-4 sm:p-6">
                         <Suspense fallback={
-                            <div className="p-6 animate-pulse text-gray-500">
-                                Loading page...
+                            <div className="p-6 animate-pulse flex justify-center items-center h-screen">
+                               <Spinner className="size-12 text-gray-900 dark:text-slate-200" />
                             </div>
                         }>
                             <Outlet /> {/* only this changes on navigation */}

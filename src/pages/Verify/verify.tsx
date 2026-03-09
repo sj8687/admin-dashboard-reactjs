@@ -45,7 +45,7 @@ export default function VerifyLogin() {
   }, [params, navigate]);
 
   return (
-    <p className="text-black text-4xl text-center">
+    <p className="flex items-center justify-center h-screen">
       Verifying login...
     </p>
   );

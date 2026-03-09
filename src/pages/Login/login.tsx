@@ -7,6 +7,7 @@ import { Check } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
 import { loginRequest } from "@/features/post/postSlice";
 import { RootState } from "@/app/store";
+import { Spinner } from "@/components/ui/spinner";
 
 export default function Login() {
   const dispatch = useDispatch();
@@ -40,8 +41,13 @@ export default function Login() {
     );
   };
 
-  if (Loginloading) return <p className="text-black text-3xl text-center items-center justify-center">its loading right now</p>
-
+if (Loginloading) {
+  return (
+    <div className="flex items-center justify-center h-screen">
+      <Spinner className="size-12 text-gray-900 dark:text-slate-200" />
+    </div>
+  );
+}
   return (
     <div className="min-h-screen flex items-center justify-center  px-4">
       <div className="w-full max-w-md  p-6 md:p-8">

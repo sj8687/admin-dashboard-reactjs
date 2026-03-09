@@ -8,6 +8,7 @@ import {
   fetchOrdersRequest,
 } from "../../features/post/postSlice";
 import { useTheme } from "../../components/ui/DarkmodeToggle";
+import { Spinner } from "@/components/ui/spinner";
 
 export default function Bottombar() {
   const dispatch = useDispatch();
@@ -43,8 +44,8 @@ export default function Bottombar() {
           </h3>
 
           {ordersLoading ? (
-            <p className="text-gray-400 dark:text-gray-400 text-sm">
-              Loading Orders...
+            <p className="text-gray-400 flex text-center items-center justify-center h-screen dark:text-gray-400">
+              <Spinner className="size-12 text-gray-900 dark:text-slate-200" />
             </p>
           ) : (
             <div
@@ -103,8 +104,8 @@ export default function Bottombar() {
           </h3>
 
           {activityLoading ? (
-            <p className="text-gray-400 dark:text-gray-400 text-sm">
-              Loading Activity...
+            <p className="flex justify-center text-center items-center text-gray-400 dark:text-gray-400 ">
+              <Spinner className="size-12 text-gray-900 dark:text-slate-200" />
             </p>
           ) : (
             <div

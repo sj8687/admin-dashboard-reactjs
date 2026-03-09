@@ -4,6 +4,7 @@ import KpiCard from "./KpiCard";
 import type { RootState } from "../../app/store";
 import { useEffect } from "react";
 import { fetchStatsRequest } from "../../features/post/postSlice";
+import { Spinner } from "@/components/ui/spinner";
 
 
 export default function Dashboard() {
@@ -18,8 +19,13 @@ export default function Dashboard() {
     dispatch(fetchStatsRequest());
   }, [dispatch]);
 
-  if (statsLoading) return <p className="dark:text-white text-black text-center items-center">Loading...</p>;
-
+if (statsLoading) {
+  return (
+    <div className="flex items-center justify-center h-screen">
+      <Spinner className="size-12 text-gray-900 dark:text-slate-200" />
+    </div>
+  );
+}
   const kpis = stats
     ? [
       {

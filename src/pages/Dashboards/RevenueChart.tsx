@@ -4,12 +4,13 @@ import { useDispatch, useSelector } from "react-redux";
 import type { RootState } from "../../app/store";
 import { useEffect } from "react";
 import { fetchPieRequest, fetchRevenueRequest } from "../../features/post/postSlice";
+import { Spinner } from "@/components/ui/spinner";
 
 export default function RevenueChart() {
 
   const dispatch = useDispatch();
 
-  const { revenueChart,pieData,   } = useSelector(
+  const { revenueLoading, pieLoading, revenueChart, pieData, } = useSelector(
     (state: RootState) => state.posts
   );
 
@@ -18,8 +19,13 @@ export default function RevenueChart() {
     dispatch(fetchPieRequest());
   }, [dispatch]);
 
-  // if (revenueLoading) return <p className="text-white">Loading</p>
-  //   if (pieLoading) return <p className="text-yellow">Loading</p>
+  if (revenueLoading || pieLoading) {
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <Spinner className="size-12 text-gray-900 dark:text-slate-200" />
+      </div>
+    );
+  }
 
 
 
