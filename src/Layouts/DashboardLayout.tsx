@@ -58,7 +58,7 @@ export default function DashboardLayout() {
                                     🚀
                                 </div>
                                 <span className="font-bold text-gray-800 dark:text-white text-base">
-                                    SwiftLogix
+                                    DASH
                                 </span>
                             </div>
                         )}
